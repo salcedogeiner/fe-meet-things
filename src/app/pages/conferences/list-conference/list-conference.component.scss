@@ -15,6 +15,14 @@
 
   td, th {
     width: 25%;
+    .mat-card {
+      display: block;
+      /* position: relative; */
+      padding: 0px;
+      /* border-radius: 4px; */
+      inline-size: max-content;
+      margin: auto;
+  }
   }
 
   table {

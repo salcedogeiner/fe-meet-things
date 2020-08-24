@@ -42,6 +42,14 @@ export class CoreService {
     );
   }
 
+  getRole() {
+    return window.sessionStorage.getItem('role');
+  }
+
+  getUid() {
+    return window.sessionStorage.getItem('uid');
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

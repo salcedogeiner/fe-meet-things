@@ -6,6 +6,7 @@ import { CoreService } from 'src/app/core/services/core.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ConferenceModel } from '../conference-model';
 import { Router } from '@angular/router';
+import { unescapeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-list-conference',
@@ -23,6 +24,7 @@ export class ListConferenceComponent implements OnInit {
 
   displayedColumns: string[] = ['title', 'location', 'state', 'quota'];
   dataSource: MatTableDataSource<ConferenceModel>;
+  role;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -38,6 +40,9 @@ export class ListConferenceComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.role = this.coreService.getRole();
+    console.log(this.role);
+
   }
 
   getUsers() {
@@ -65,7 +70,12 @@ export class ListConferenceComponent implements OnInit {
   }
 
   editRegister(el) {
-    this.edit.emit(el);
+    this.coreService.post('conferences/attendant', {uid: this.coreService.getUid(), cid: el.id}).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.router.navigate(['/conferences']);
+      }
+    );
   }
 
 }

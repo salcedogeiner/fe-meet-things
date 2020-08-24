@@ -21,7 +21,9 @@
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
   <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-        <div class="element-detail"
+        <mat-card>
+          <mat-card-content>
+            <div class="element-detail"
              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
           <div class="element-description">
             <label>title:</label> <span> {{element.title}}</span><br>
@@ -29,10 +31,15 @@
             <label>state:</label> <span> {{element.state}}</span><br>
             <label>quota:</label> <span> {{element.quota}}</span><br>
           </div>
-          <div class="element-description">
-              <button mat-raised-button color="primary" type="button" (click)="editRegister(element)">EDITAR</button>
-            </div>
+          <div class="element-description" *ngIf="role == 2">
+            <button mat-raised-button color="primary" type="button" (click)="editRegister(element)">Register</button>
+          </div>
         </div>
+          </mat-card-content>
+        </mat-card>
+
+
+
       </td>
     </ng-container>
 
@@ -49,7 +56,7 @@
     </div>
 
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions *ngIf="role == 1">
     <button mat-raised-button color="primary" type="button" (click)="newRegister()">NUEVO</button>
   </mat-card-actions>
 

@@ -36,18 +36,23 @@ export class AuthenticationService {
   SignIn(email: string, password: string) {
 
     // console.log(email, password);
+    const self = this;
 
-    return this.angularFireAuth
+    return new Promise ((resolve, reject) => {
+      self.angularFireAuth
       .auth
       .signInWithEmailAndPassword(email, password).then(async (res: firebase.auth.UserCredential) => {
-        this.userData = res.user;
-        this.logged.next( this.userData.uid ? true : false);
-        // console.log('Successfully signed in!', res);
+        self.userData = res.user;
+        self.logged.next( self.userData.uid ? true : false);
+        console.log('Successfully signed in!', res);
+        resolve(res);
       })
       .catch(err => {
         // console.log('Something is wrong:', err.message);
         alert('Invalid credentials');
+        reject(err);
       });
+    });
   }
 
   /* Sign out */
