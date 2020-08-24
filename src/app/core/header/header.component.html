@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div>
+        <h1>meet-things</h1>
+    </div>
+    <div *ngIf="user" class="logout">
+        <span (click)="logout()">Logout</span>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

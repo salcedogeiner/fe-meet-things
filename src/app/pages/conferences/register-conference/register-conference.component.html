@@ -1,0 +1,52 @@
+<div class="r-card">
+  <mat-card class="container-register">
+
+    <mat-card-header>
+      <mat-card-title>Registro financiero</mat-card-title>
+      <mat-card-subtitle>informacion financiera</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="rsFormGroup" class="form" (ngSubmit)="submit()" validate>
+      <mat-card-content>
+
+
+        <mat-form-field class="e-full-width">
+          <input matInput placeholder="title" [formControl]="rsFormGroup.controls['title']"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            Please enter a valid data
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="e-full-width">
+          <input matInput placeholder="location" [formControl]="rsFormGroup.controls['location']"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            Please enter a valid data
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="e-full-width">
+          <input matInput placeholder="quota" [formControl]="rsFormGroup.controls['quota']"
+            [errorStateMatcher]="matcher" type="number">
+          <mat-error>
+            Please enter a valid data
+          </mat-error>
+        </mat-form-field>
+
+        <section>
+          <mat-checkbox class="e-full-width" [formControl]="rsFormGroup.controls['state']">Enabled conference</mat-checkbox>
+        </section>
+
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!rsFormGroup.valid" type="submit">SUBMMIT</button>
+        <button mat-raised-button color="primary" (click)="cancel()">CANCELAR</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+
+
+</div>
